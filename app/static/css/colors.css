@@ -1,0 +1,100 @@
+:root {
+    /* Primary Colors - Elegant Purple */
+    --primary-50: #f5f3ff;
+    --primary-100: #ede9fe;
+    --primary-200: #ddd6fe;
+    --primary-300: #c4b5fd;
+    --primary-400: #a78bfa;
+    --primary-500: #8b5cf6;
+    --primary-600: #7c3aed;
+    --primary-700: #6d28d9;
+    --primary-800: #5b21b6;
+    --primary-900: #4c1d95;
+
+    /* Secondary Colors - Ocean Blue */
+    --secondary-50: #eff6ff;
+    --secondary-100: #dbeafe;
+    --secondary-200: #bfdbfe;
+    --secondary-300: #93c5fd;
+    --secondary-400: #60a5fa;
+    --secondary-500: #3b82f6;
+    --secondary-600: #2563eb;
+    --secondary-700: #1d4ed8;
+    --secondary-800: #1e40af;
+    --secondary-900: #1e3a8a;
+
+    /* Accent Colors - Coral */
+    --accent-50: #fff1f2;
+    --accent-100: #ffe4e6;
+    --accent-200: #fecdd3;
+    --accent-300: #fda4af;
+    --accent-400: #fb7185;
+    --accent-500: #f43f5e;
+    --accent-600: #e11d48;
+    --accent-700: #be123c;
+    --accent-800: #9f1239;
+    --accent-900: #881337;
+
+    /* Neutral Colors */
+    --neutral-50: #fafafa;
+    --neutral-100: #f4f4f5;
+    --neutral-200: #e4e4e7;
+    --neutral-300: #d4d4d8;
+    --neutral-400: #a1a1aa;
+    --neutral-500: #71717a;
+    --neutral-600: #52525b;
+    --neutral-700: #3f3f46;
+    --neutral-800: #27272a;
+    --neutral-900: #18181b;
+
+    /* Semantic Colors */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --info: #3b82f6;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+    --gradient-secondary: linear-gradient(135deg, var(--secondary-500), var(--accent-500));
+    --gradient-dark: linear-gradient(135deg, var(--neutral-800), var(--neutral-900));
+    --gradient-light: linear-gradient(135deg, var(--neutral-50), var(--neutral-100));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    
+    /* Glow Effects */
+    --glow-primary: 0 0 20px rgba(139, 92, 246, 0.5);
+    --glow-secondary: 0 0 20px rgba(59, 130, 246, 0.5);
+    --glow-accent: 0 0 20px rgba(244, 63, 94, 0.5);
+}
+
+/* Dark mode colors */
+[data-theme="dark"] {
+    --bg-primary: var(--neutral-900);
+    --bg-secondary: var(--neutral-800);
+    --text-primary: var(--neutral-50);
+    --text-secondary: var(--neutral-300);
+    --border-color: var(--neutral-700);
+}
+
+/* Light mode colors */
+[data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: var(--neutral-50);
+    --text-primary: var(--neutral-900);
+    --text-secondary: var(--neutral-600);
+    --border-color: var(--neutral-200);
+}
+
+/* Default to dark theme */
+:root {
+    --bg-primary: var(--neutral-900);
+    --bg-secondary: var(--neutral-800);
+    --text-primary: var(--neutral-50);
+    --text-secondary: var(--neutral-300);
+    --border-color: var(--neutral-700);
+}

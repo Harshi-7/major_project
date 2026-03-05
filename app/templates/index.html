@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}LegalSummarizer AI - Transform Legal Documents{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content" data-aos="fade-up">
+        <div class="hero-badge">
+            <i class="fas fa-robot"></i>
+            <span>Powered by Advanced AI</span>
+        </div>
+        <h1 class="hero-title">
+            Transform <span class="gradient-text">Legal Documents</span><br>
+            into Clear Insights
+        </h1>
+        <p class="hero-subtitle">
+            Experience the power of AI-driven legal document summarization. 
+            Upload, analyze, and understand complex legal texts in seconds.
+        </p>
+        <div class="hero-cta">
+            <a href="#summarizer" class="btn btn-primary">
+                <i class="fas fa-magic"></i>
+                Try It Now
+            </a>
+            <a href="/features" class="btn btn-secondary">
+                <i class="fas fa-play"></i>
+                Watch Demo
+            </a>
+        </div>
+    </div>
+    <div class="hero-visual" data-aos="fade-left">
+        <div class="floating-card">
+            <i class="fas fa-file-contract"></i>
+            <span>Legal Document</span>
+        </div>
+        <div class="floating-card delay-1">
+            <i class="fas fa-arrow-right"></i>
+        </div>
+        <div class="floating-card delay-2">
+            <i class="fas fa-file-lines"></i>
+            <span>Summary</span>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="stats-container">
+        <div class="stat-card" data-aos="fade-up">
+            <div class="stat-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-content">
+                <span class="stat-number" data-target="99.9">0</span>
+                <span class="stat-label">Accuracy</span>
+            </div>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat-icon">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="stat-content">
+                <span class="stat-number" data-target="10000">0</span>
+                <span class="stat-label">Documents</span>
+            </div>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-icon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-content">
+                <span class="stat-number" data-target="5">0</span>
+                <span class="stat-label">Avg Time (s)</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Summarizer Section -->
+<section class="summarizer-section" id="summarizer">
+    <div class="section-header" data-aos="fade-up">
+        <h2>AI-Powered <span class="gradient-text">Summarizer</span></h2>
+        <p>Paste your legal document below and get an instant AI-generated summary</p>
+    </div>
+
+    <div class="summarizer-container" data-aos="fade-up">
+        <div class="input-area">
+            <div class="input-header">
+                <div class="input-tabs">
+                    <button class="tab-btn active" data-tab="paste">
+                        <i class="fas fa-paste"></i> Paste Text
+                    </button>
+                    <button class="tab-btn" data-tab="upload">
+                        <i class="fas fa-upload"></i> Upload File
+                    </button>
+                </div>
+                <div class="input-actions">
+                    <button class="action-btn" id="clearBtn">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <button class="action-btn" id="sampleBtn">
+                        <i class="fas fa-file"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="tab-content active" id="paste-tab">
+                <textarea 
+                    id="inputText" 
+                    placeholder="Paste your legal document here... (min. 100 characters)"
+                ></textarea>
+                <div class="char-counter">
+                    <span id="charCount">0</span> / 5000 characters
+                </div>
+            </div>
+            
+            <div class="tab-content" id="upload-tab">
+                <div class="upload-area" id="dropArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Drag & Drop</h3>
+                    <p>or <span class="browse-text">browse</span> to choose a file</p>
+                    <input type="file" id="fileInput" accept=".txt,.pdf,.docx" hidden>
+                    <p class="file-hint">Supported: TXT, PDF, DOCX (Max 10MB)</p>
+                </div>
+            </div>
+
+            <div class="model-selector">
+                <label for="modelSelect">Select Model:</label>
+                <select id="modelSelect">
+                    <option value="bart">BART Model (Recommended)</option>
+                    <option value="pegasus">PEGASUS Model</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="action-area">
+            <button class="btn btn-primary summarize-btn" id="summarizeBtn">
+                <i class="fas fa-magic"></i>
+                <span>Generate Summary</span>
+                <div class="loading-spinner" style="display: none;"></div>
+            </button>
+        </div>
+
+        <div class="output-area" id="outputArea" style="display: none;">
+            <div class="output-header">
+                <h3><i class="fas fa-file-lines"></i> Generated Summary</h3>
+                <div class="output-actions">
+                    <button class="output-btn" id="copyBtn">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <button class="output-btn" id="downloadBtn">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="output-content" id="summaryOutput"></div>
+            <div class="output-footer">
+                <div class="stats">
+                    <span><i class="fas fa-compress"></i> <span id="compressionRatio">0%</span></span>
+                    <span><i class="fas fa-clock"></i> <span id="processingTime">0s</span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="error-area" id="errorArea" style="display: none;">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="errorMessage"></span>
+        </div>
+    </div>
+</section>
+
+<!-- Features Preview -->
+<section class="features-preview">
+    <div class="section-header" data-aos="fade-up">
+        <h2>Why Choose <span class="gradient-text">Our Platform</span></h2>
+        <p>Discover the power of AI-driven legal document analysis</p>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up">
+            <div class="feature-icon">
+                <i class="fas fa-brain"></i>
+            </div>
+            <h3>Advanced AI Models</h3>
+            <p>State-of-the-art BART and PEGASUS models trained on millions of documents</p>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-icon">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Lightning Fast</h3>
+            <p>Get summaries in seconds, not hours. Process multiple documents simultaneously</p>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Secure & Private</h3>
+            <p>Your documents are encrypted and never stored on our servers</p>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-icon">
+                <i class="fas fa-language"></i>
+            </div>
+            <h3>Multi-Language</h3>
+            <p>Support for multiple languages with automatic language detection</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="cta-container" data-aos="fade-up">
+        <h2>Ready to Transform Your Legal Workflow?</h2>
+        <p>Join thousands of legal professionals who trust our AI-powered summarizer</p>
+        <a href="#summarizer" class="btn btn-primary btn-large">
+            <i class="fas fa-rocket"></i>
+            Get Started Now
+        </a>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/summarizer.js') }}"></script>
+{% endblock %}
